@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html">index</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="add_student.html">Add Student</a></li>
+                <li><a href="timetable.php">View Timetable</a></li>
+                <li><a href="mark_attendance.html">Mark Attendance</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h1>Mark Attendance</h1>
+        <form id="markAttendanceForm">
+            <label for="reg_number">Registration Number:</label>
+            <input type="text" id="reg_number" name="reg_number" required>
+            
+            <label for="attendance_date">Date (YYYY-MM-DD):</label>
+            <input type="text" id="attendance_date" name="attendance_date" required>
+            <button type="submit">Mark Attendance</button>
+        </form>
+        <div id="response"></div>
+    </section>
+    <footer>
+        <p>&copy; 2024 ERP Solutions. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('markAttendanceForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch('mark_attendance.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.msg;
+            });
+        });
+    </script>
+</body>
+</html>

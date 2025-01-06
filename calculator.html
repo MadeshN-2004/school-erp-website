@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        /* Basic styling for the calculator */
+        #calculator {
+            width: 200px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        #calculator input {
+            width: 80px;
+            margin: 5px;
+            padding: 5px;
+        }
+        #calculator button {
+            width: 40px;
+            padding: 5px;
+            margin: 2px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h3>Simple Calculator</h3>
+        <input type="number" id="num1" placeholder="Number 1">
+        <input type="number" id="num2" placeholder="Number 2"><br><br>
+        
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculate(operator) {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = "Please enter valid numbers!";
+            } else {
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+                        break;
+                }
+            }
+
+            document.getElementById("result").textContent = `Result: ${result}`;
+        }
+    </script>
+</body>
+</html>

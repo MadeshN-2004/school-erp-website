@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html">index</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="add_student.html">Add Student</a></li>
+                <li><a href="timetable.php">View Timetable</a></li>
+                <li><a href="mark_attendance.html">Mark Attendance</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h1>Add Student</h1>
+        <form id="addStudentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="reg_number">Registration Number:</label>
+            <input type="text" id="reg_number" name="reg_number" required>
+            <button type="submit">Add Student</button>
+        </form>
+        <div id="response"></div>
+    </section>
+    <footer>
+        <p>&copy; 2024 ERP Solutions. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('addStudentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch('add_student.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.msg;
+            });
+        });
+    </script>
+</body>
+</html>
